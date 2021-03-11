@@ -1,7 +1,7 @@
 # Pyncake Editor [![Made with love by Danix](https://img.shields.io/badge/made%20with%20♡%20by-danix-4287f5?style=for-the-badge)](https://github.com/Danix421) [![Pypresence](https://img.shields.io/badge/using-pypresence-00bb88.svg?style=for-the-badge&logo=discord&logoWidth=20)](https://github.com/qwertyquerty/pypresence) [![itch.io](https://img.shields.io/badge/itch.io-fa5c5c?style=for-the-badge&logo=itch.io&logoColor=white)](https://danix421.itch.io/Super-Pancake) [![GitHub](https://img.shields.io/badge/github-black?style=for-the-badge&logo=github)](htttps://github.com/Danix421/Pyncake-Editor)
 Pyncake Editor is the new powerful and simplest IDE, made with Python, for Python.
 
-This IDE has not much functions, but haves the needed for simple developers. It is really fast; don't needs too much requirements, it can run in a PC with a RAM of 2GB and no graphic card (tested)! You're a developer that like videogames? Don't worry, this is perfect for you: Pyncake Editor integrates with Discord Rich Presence with Pypresence, an advanced Rich Presence system, made only with Python.
+This IDE has not much functions, but haves the needed for simple developers. It is really fast; don't needs too much requirements, it can run in a PC with a RAM of 2GB and no graphic card needed (tested)! You're a developer that like videogames? Don't worry, this is perfect for you: Pyncake Editor integrates with Discord Rich Presence with Pypresence, an advanced Rich Presence system, made only with Python.
 
 ## Early Access
 This IDE is now in development, it only has a Early Access build; you can use it, but it not have too much, or any, functions and it's possible that haves too much bugs and other things.

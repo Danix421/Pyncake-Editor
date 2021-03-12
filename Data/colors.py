@@ -1,6 +1,8 @@
-black = (0, 0, 0)
-white = (255, 255, 255)
-red = (255, 0, 0)
-blue = (33, 150, 243)
-pancake = (255, 204, 128)
-grey = (33, 33, 33)
+class Colors:
+    def __init__(self):
+        self.black = (0, 0, 0)
+        self.white = (255, 255, 255)
+        self.red = (255, 0, 0)
+        self.blue = (33, 150, 243)
+        self.pancake = (255, 204, 128)
+        self.grey = (33, 33, 33)

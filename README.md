@@ -9,7 +9,7 @@ This editor is currently in development, but you can got a preview version of it
 ## System Requirements
 Operative System: Windows Vista, 32 or 64 bits, or above (tested in Windows 7).
 
-RAM: 2GB (the editor not use more of 1GB).
+RAM: 2GB (the editor don't use more of 1GB).
 
 Graphic Card: None, it don't need it (tested).
 

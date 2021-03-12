@@ -3,8 +3,8 @@ Pyncake Editor is the new powerful and simplest code editor, made with Python, f
 
 This editor has not much functions, but haves the needed for simple developers. It is really fast; don't needs too much requirements, it can run in a PC with a RAM of 2GB and no graphic card needed (tested)! You're a developer that like videogames? Don't worry, this is perfect for you: Pyncake Editor integrates with Discord Rich Presence with Pypresence, an advanced Rich Presence system, made with Python.
 
-## Early Access
-This editor is now in development, it only has a Early Access build; you can use it, but it not have too much, or any, functions and it's possible that haves too much bugs and other things.
+## Preview
+This editor is currently in development, but you can got a preview version of it, but it don't represent how the editor will be.
 
 ## System Requirements
 Operative System: Windows Vista, 32 or 64 bits, or above (tested in Windows 7).

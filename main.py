@@ -1,5 +1,5 @@
 # Pyncake Editor
-# Made by Danix
+# Made by Danix and CarrotOnCanvas
 # Font "Silver" by Poppy Works
 
 import pygame, sys, pypresence

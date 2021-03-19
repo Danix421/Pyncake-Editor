@@ -19,7 +19,7 @@ For use the source code, you need Python 3.8.7 or above. Extra requirements for 
 You can contribute to this editor by helping to develop it, and for that, you will have to view the contribution instructions and rules. There are available [here](https://github.con/Danix421/Pyncake-Editor/blob/main/CONTRIBUTING.md)
 
 ## Credits
-Code, artwork and sound effects by Danix (me).
+Code by Danix (me) and [CarrotOnCanvas](https://github.com/CarrotOnCanvas/), artwork by Danix.
 
 Font "Silver" by [Poppy Works](https://poppyworks.itch.io).
 

@@ -54,7 +54,6 @@ class app:
                 if self.event.type == MOUSEBUTTONDOWN:
                     if self.event.button == 1:
                         if self.data.exitbutton.collidepoint(self.data.mouse_pos):
-                            self.RP.close()
                             pygame.quit()
                             sys.exit()
             pygame.display.update()

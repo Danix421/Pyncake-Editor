@@ -2,7 +2,7 @@
 # Made by Danix
 # Font "Silver" by Poppy Works
 
-import pygame, sys
+import pygame, sys, pypresence
 from pygame.locals import *
 from Data.colors import Colors
 
@@ -30,6 +30,10 @@ class app:
         pygame.display.set_icon(self.metadata.app_icon)
         self.running = True
 
+        self.RP = pypresence.Presence("811677670718570536")
+        self.RP.connect()
+        self.RP.update(large_image = "appicon", state = "In editor", large_text = "Pyncake Editor")
+
         self.data.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
         self.window.blit(self.data.exit, (912, 1))
         self.data.down_bar = pygame.draw.rect(self.window, self.data.colors.pancake, (0, 730, 950, 20))
@@ -50,6 +54,7 @@ class app:
                 if self.event.type == MOUSEBUTTONDOWN:
                     if self.event.button == 1:
                         if self.data.exitbutton.collidepoint(self.data.mouse_pos):
+                            self.RP.close()
                             pygame.quit()
                             sys.exit()
             pygame.display.update()

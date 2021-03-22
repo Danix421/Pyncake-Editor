@@ -30,11 +30,8 @@ class app:
            "Packages" : "Script"
         }
         
-        with open('project.txt','w') as project_file:
-            json.dump(data,project_file)
-            
-        with open('project.txt') as project_file:
-            data = json.load(project_file)
+        with open('project.txt','r+') as project_file:
+            json.dump(data, project_file)
             for entry in data_items:
                 print(entry)
         

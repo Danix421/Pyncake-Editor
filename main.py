@@ -32,8 +32,6 @@ class app:
         
         with open('project.txt','r+') as project_file:
             json.dump(data, project_file)
-            for entry in data_items:
-                print(entry)
         
     def __init__(self):
         self.window = pygame.display.set_mode(self.metadata.window_size, pygame.NOFRAME)

@@ -30,7 +30,7 @@ class app:
            "Packages" : "Script"
         }
         
-        with open('project.txt','r+') as project_file:
+        with open('project.json', 'w+') as project_file:
             json.dump(data, project_file)
         
     def __init__(self):

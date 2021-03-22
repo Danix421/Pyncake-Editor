@@ -2,6 +2,7 @@
 # Coded by Danix, CarrotOnCanvas and METGaming
 # Artwork by Danix
 # Font "Silver" by Poppy Works
+# Discord Rich Presence system "Pypresence" by qwertyquerty
 
 import pygame, sys, pypresence
 from pygame.locals import *

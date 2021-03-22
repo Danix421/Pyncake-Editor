@@ -23,7 +23,19 @@ class app:
         font = pygame.font.Font(fonts_dir + "Silver.ttf", 30)
         colors = Colors()
         exit = font.render("X", True, colors.white)
-    
+        
+        data = {
+           "Packages" : "Script"
+        }
+        
+        with open('project.txt','w') as project_file:
+            json.dump(data,project_file)
+            
+        with open('project.txt') as project_file:
+            data = json.load(project_file)
+            for entry in data_items:
+                print(entry)
+        
     def __init__(self):
         self.window = pygame.display.set_mode(self.metadata.window_size, pygame.NOFRAME)
         pygame.display.set_caption(self.metadata.app_name)

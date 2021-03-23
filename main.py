@@ -22,10 +22,8 @@ class app:
         data_dir = "Data/"
         graphics_dir = data_dir + "Graphics/"
         fonts_dir = data_dir + "Fonts/"
-        font = pygame.font.Font(fonts_dir + "Silver.ttf", 30)
         colors = Colors()
-        exit = font.render("X", True, colors.white)
-        
+
         config = {
            "rich presence": True
         }
@@ -41,12 +39,16 @@ class app:
         pygame.display.set_caption(self.metadata.app_name)
         pygame.display.set_icon(self.metadata.app_icon)
         self.running = True
+
+        self.font = pygame.font.Font(self.data.fonts_dir + "Silver.ttf", 30)
+
+        self.exit = self.font.render("X", True, self.data.colors.white)
         
         if self.data.config["rich presence"]:
             try:
                 self.RP = pypresence.Presence("811677670718570536")
                 self.RP.connect()
-                self.RP.update("large_icon" = "appicon", "large_text" = "Pyncake Editor", "state" = "In editor")
+                self.RP.update(large_icon = "appicon", large_text = "Pyncake Editor", state = "In editor")
             except pypresence.exceptions.InvalidPipe:
                 pass
         
@@ -54,19 +56,19 @@ class app:
         while self.running:
             self.window.fill((0,0,0))
             self.data.mouse_pos = pygame.mouse.get_pos()
-            self.window.blit(self.data.exit, (912, 1))
+            self.window.blit(self.exit, (912, 1))
             self.down_bar = pygame.draw.rect(self.window, self.data.colors.pancake, (0, 730, 950, 20))
             self.left_bar = pygame.draw.rect(self.window, self.data.colors.blue, (0, 0, 45, 750))
             self.up_bar = pygame.draw.rect(self.window, self.data.colors.grey, (0, 0, 1000, 25))
             self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
             self.window.blit(self.metadata.app_logo, (150, 150))
-            if self.data.exitbutton.collidepoint(self.data.mouse_pos):
-                self.data.exitbutton = pygame.draw.rect(self.window, self.data.colors.red, (880, 0, 70, 25))
-                self.window.blit(self.data.exit, (912, 1))
+            if self.exitbutton.collidepoint(self.data.mouse_pos):
+                self.exitbutton = pygame.draw.rect(self.window, self.data.colors.red, (880, 0, 70, 25))
+                self.window.blit(self.exit, (912, 1))
             else:
-                self.data.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
-                self.window.blit(self.data.exit, (912, 1))
-            pygame.draw.rect(self.window, (0,255,255), (self.data.mouse_pos[0], self.data.mouse_pos[1], 20,20))
+                self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
+                self.window.blit(self.exit, (912, 1))
+            pygame.draw.rect(self.window, self.data.colors.cyan, (self.data.mouse_pos[0], self.data.mouse_pos[1], 20,20))
             for self.event in pygame.event.get():
                 if self.event.type == MOUSEBUTTONDOWN:
                     if self.event.button == 1:

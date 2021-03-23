@@ -5,6 +5,7 @@
 # Discord Rich Presence system "Pypresence" by qwertyquerty
 
 import pygame, sys, pypresence, json
+import math, random
 from pygame.locals import *
 from Data.colors import Colors
 
@@ -29,10 +30,37 @@ class app:
         }
         
         try:
-            config = json.load(open("Data/config.json", "r"))
+            config = json.load(open("Data/config.pyncake", "r"))
         except FileNotFoundError:
-            json.dump(config, open("Data/config.json", "w"))
-            config = json.load(open("Data/config.json", "r"))
+            json.dump(config, open("Data/config.pyncake", "w"))
+            config = json.load(open("Data/config.pyncake", "r"))
+    
+    class PartSYS:
+        def __init__(self):
+            self.particles = []
+        def create_particles(self, loc, size, amount,):
+            for r in range(0, amount):
+                self.particles.append([loc[0], loc[1], \
+                        random.randint(size/2, size), random.uniform(0.00, 359.00)])
+        def update_particles(self, speed, decay):
+            particles_to_remove = []
+
+            for p in self.particles:
+                p[0] += math.cos(math.radians(p[3])) * speed
+                p[1] -= math.sin(math.radians(p[3])) * speed
+
+                p[2] -= decay
+                if p[2] < 0:
+                    particles_to_remove.append(p)
+                p[3] += 0
+
+            for pR in particles_to_remove:
+                self.particles.remove(pR)
+        def draw(self, window):
+            for p in self.particles:
+                pygame.draw.circle(window, (255, 255, 255), (p[0], p[1]), p[2])
+    
+    PartSYS = PartSYS()
     
     def __init__(self):
         self.window = pygame.display.set_mode(self.metadata.window_size, pygame.NOFRAME)
@@ -56,21 +84,30 @@ class app:
         while self.running:
             self.window.fill((0,0,0))
             self.data.mouse_pos = pygame.mouse.get_pos()
+            # Blit screen
             self.window.blit(self.exit, (912, 1))
             self.down_bar = pygame.draw.rect(self.window, self.data.colors.pancake, (0, 730, 950, 20))
             self.left_bar = pygame.draw.rect(self.window, self.data.colors.blue, (0, 0, 45, 750))
             self.up_bar = pygame.draw.rect(self.window, self.data.colors.grey, (0, 0, 1000, 25))
             self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
             self.window.blit(self.metadata.app_logo, (150, 150))
+            # Blit and Update Particles (you can adjust the varis here)
+            self.PartSYS.draw(self.window)
+            self.PartSYS.update_particles(4, 0.2)
+            # Exit blitting code
             if self.exitbutton.collidepoint(self.data.mouse_pos):
                 self.exitbutton = pygame.draw.rect(self.window, self.data.colors.red, (880, 0, 70, 25))
                 self.window.blit(self.exit, (912, 1))
             else:
                 self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
                 self.window.blit(self.exit, (912, 1))
-            pygame.draw.rect(self.window, self.data.colors.cyan, (self.data.mouse_pos[0], self.data.mouse_pos[1], 20,20))
+            # Draw mouse
+            pygame.draw.rect(self.window, self.data.colors.cyan, (self.data.mouse_pos[0], self.data.mouse_pos[1], 20,20), 5)
+            
             for self.event in pygame.event.get():
                 if self.event.type == MOUSEBUTTONDOWN:
+                    # Create particles on click (you can adjust the varis here)
+                    self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
                     if self.event.button == 1:
                         if self.exitbutton.collidepoint(self.data.mouse_pos):
                             pygame.quit()

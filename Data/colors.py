@@ -6,3 +6,4 @@ class Colors:
         self.blue = (33, 150, 243)
         self.pancake = (255, 204, 128)
         self.grey = (33, 33, 33)
+        self.cyan = (0, 255, 255)

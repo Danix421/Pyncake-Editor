@@ -1,6 +1,6 @@
 # Pyncake Editor
-# Coded by Danix, CarrotOnCanvas and METGaming
-# Artwork by Danix
+# Coding by Danix, CarrotOnCanvas and METGaming
+# Artwork by Danix and METGaming
 # Font "Silver" by Poppy Works
 # Discord Rich Presence system "Pypresence" by qwertyquerty
 
@@ -32,7 +32,7 @@ class app:
             config = json.load(open("Data/config.json", "r"))
         except FileNotFoundError:
             json.dump(config, open("Data/config.json", "w"))
-            config = open("Data/config.json", "r")
+            config = json.load(open("Data/config.json", "r"))
     
     def __init__(self):
         self.window = pygame.display.set_mode(self.metadata.window_size, pygame.NOFRAME)
@@ -48,7 +48,7 @@ class app:
             try:
                 self.RP = pypresence.Presence("811677670718570536")
                 self.RP.connect()
-                self.RP.update(large_icon = "appicon", large_text = "Pyncake Editor", state = "In editor")
+                self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
             except pypresence.exceptions.InvalidPipe:
                 pass
         

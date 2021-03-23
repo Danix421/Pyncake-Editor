@@ -30,10 +30,10 @@ class app:
         }
         
         try:
-            config = json.load(open("Data/config.json", "r"))
+            config = json.load(open("Data/config.pyncake", "r"))
         except FileNotFoundError:
-            json.dump(config, open("Data/config.json", "w"))
-            config = json.load(open("Data/config.json", "r"))
+            json.dump(config, open("Data/config.pyncake", "w"))
+            config = json.load(open("Data/config.pyncake", "r"))
     
     class PartSYS:
         def __init__(self):

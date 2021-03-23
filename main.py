@@ -94,7 +94,7 @@ class app:
             # Blit and Update Particles (you can adjust the varis here)
             self.PartSYS.draw(self.window)
             self.PartSYS.update_particles(4, 0.2)
-            #exit blitting code
+            # Exit blitting code
             if self.exitbutton.collidepoint(self.data.mouse_pos):
                 self.exitbutton = pygame.draw.rect(self.window, self.data.colors.red, (880, 0, 70, 25))
                 self.window.blit(self.exit, (912, 1))

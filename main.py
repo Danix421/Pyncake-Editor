@@ -58,7 +58,7 @@ class app:
                 self.particles.remove(pR)
         def draw(self, window):
             for p in self.particles:
-                pygame.draw.circle(window, (255, 255, 255), (p[0], p[1]), p[2])
+                pygame.draw.circle(window, (game.data.colors.white), (p[0], p[1]), p[2])
     
     PartSYS = PartSYS()
     

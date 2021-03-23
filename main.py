@@ -1,5 +1,5 @@
 # Pyncake Editor
-# Coded by Danix, CarrotOnCanvas and METGaming
+# Coding by Danix, CarrotOnCanvas and METGaming
 # Artwork by Danix and METGaming
 # Font "Silver" by Poppy Works
 # Discord Rich Presence system "Pypresence" by qwertyquerty

@@ -26,14 +26,14 @@ class app:
         colors = Colors()
         exit = font.render("X", True, colors.white)
         
-        data = {
+        config = {
            "rich presence": True
         }
         
         try:
             config = json.load(open("Data/config.json", "r"))
         except FileNotFoundError:
-            json.dump(data, open("Data/config.json", "w"))
+            json.dump(config, open("Data/config.json", "w"))
             config = open("Data/config.json", "r")
     
     def __init__(self):

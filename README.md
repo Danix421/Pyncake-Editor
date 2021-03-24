@@ -25,11 +25,15 @@ Artwork by Danix and [METGaming](https://github.com/METGameDev).
 
 Font "Silver" by [Poppy Works](https://poppyworks.itch.io).
 
+Font "Futile Pro" by [Eeve Somepx](https://somepx.com/)
+
 Discord Rich Presence system "Pypresence" by [qwertyquerty](https://github.com/qwertyquerty).
 
 ## License
 This editor is under GNU General Public License v3 (GPL v3), you can view it [here](https://github.com/Danix421/Pyncake-Editor/blob/main/LICENSE.md).
 
-[Silver](https://poppyworks.itch.io/silver) font is under Creative Commons Attribution 4.0 International, you can view the "human readable" version [here](https://poppyworks.itch.io/silver)
+[Silver](https://poppyworks.itch.io/silver) font is under Creative Commons Attribution 4.0 International (CC BY 4.0), you can view the "human readable" version [here](https://poppyworks.itch.io/silver)
+
+[Futile Pro](https://somepx.itch.io/humble-fonts-free) font is under Common Sense License (CSL), you can view it [here](https://palmentieri.it/somepx/license.txt)
 
 [Pypresence](https://github.com/qwertyquerty/pypresence) is under MIT License, you can view it [here](https://github.com/qwertyquerty/pypresence/blob/main/LICENSE).

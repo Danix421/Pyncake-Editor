@@ -12,7 +12,7 @@ from Data.colors import Colors
 pygame.init()
 
 class app:
-
+    
     class data:
         app_name = "Pyncake Editor"
         app_icon = pygame.image.load("app_icon.png")
@@ -39,6 +39,19 @@ class app:
 
     exit = font.render("X", True, colors.white)
     exitbutton = pygame.draw.rect(window, colors.grey, (880, 0, 70, 25))
+    
+    class Editor:
+        user_text = ''
+        
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        user_text = user_text[0:-1]
+                    else:
+                        user_text += event.unicode
+            text_surface = font.render(user_text,True,(255,255,255))
+            screen.blit(text_surface,(0,0))
     
     class PartSYS:
         def __init__(self):

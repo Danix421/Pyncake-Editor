@@ -60,8 +60,25 @@ class app:
             for p in self.particles:
                 pygame.draw.circle(window, app.data.colors.white, (p[0], p[1]), p[2])
     
+    class ErrorScreen:
+        def __init__(self):
+            self.fallen_pancakes = pygame.image.load("Data/Graphics/"+"fallen_over_pancakes.png")
+            self.font = pygame.font.Font("Data/Fonts/"+"FutilePro.ttf", 40)
+            self.e_texts = []
+        def draw(self, window, error):
+            pygame.draw.rect(window, (33, 150, 243), (0, 0, 45, 750))
+            window.blit(self.fallen_pancakes, (60,450))
+            e_texts = []
+            e_texts.append([self.font.render("Ops! The editor ran into an error", True, (255, 255, 255)), [60,100]])
+            e_texts.append([self.font.render("Here's the error code. Send it to the devs.", True, (255, 255, 255)), [60, 170]])
+            e_texts.append([self.font.render(error[0:35], True, (255, 0, 0)), [60, 250]])
+            e_texts.append([self.font.render(error[35:len(error)], True, (255, 0, 0)), [60, 320]])
+            for t in e_texts:
+                window.blit(t[0], t[1])
+            pygame.draw.rect(window, (255,0,0), (45, 225, 1000, 3))
     PartSYS = PartSYS()
-    
+    ErrS = ErrorScreen()
+    print(ErrS)
     def __init__(self):
         self.window = pygame.display.set_mode(self.metadata.window_size, pygame.NOFRAME)
         pygame.display.set_caption(self.metadata.app_name)
@@ -93,6 +110,10 @@ class app:
             self.up_bar = pygame.draw.rect(self.window, self.data.colors.grey, (0, 0, 1000, 25))
             self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
             self.window.blit(self.metadata.app_logo, (150, 150))
+
+            #draws error screen
+            self.window.fill((0,0,0))
+            self.ErrS.draw(self.window, "[error here]")
             # Exit blitting code
             if self.exitbutton.collidepoint(self.data.mouse_pos):
                 self.exitbutton = pygame.draw.rect(self.window, self.data.colors.red, (880, 0, 70, 25))
@@ -105,7 +126,6 @@ class app:
             self.PartSYS.update_particles(2.5, 0.5)
             # Draw mouse
             self.window.blit(self.cursor, (self.data.mouse_pos))
-            
             for self.event in pygame.event.get():
                 if self.event.type == MOUSEBUTTONDOWN:
                     # Create particles on click (you can adjust the varis here)
@@ -114,7 +134,7 @@ class app:
                         if self.exitbutton.collidepoint(self.data.mouse_pos):
                             pygame.quit()
                             sys.exit()
-
+            
             pygame.display.update()
 
 app()

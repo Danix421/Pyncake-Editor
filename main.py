@@ -41,17 +41,46 @@ class app:
     exitbutton = pygame.draw.rect(window, colors.grey, (880, 0, 70, 25))
     
     class Editor:
-        user_text = ''
-        
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_BACKSPACE:
-                        user_text = user_text[0:-1]
-                    else:
-                        user_text += event.unicode
-            text_surface = font.render(user_text,True,(255,255,255))
-            screen.blit(text_surface,(0,0))
+        def Go_To(self):
+            while self.running:
+                self.window.fill(self.colors.black)
+                self.data.mouse_pos = pygame.mouse.get_pos()
+                # Blit screen
+                self.window.blit(self.exit, (912, 1))
+                pygame.draw.rect(self.window, self.colors.pancake, (0, 730, 950, 20))
+                pygame.draw.rect(self.window, self.colors.blue, (0, 0, 45, 750))
+                pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
+                self.window.blit(self.user_code_text, self.user_code_text_rect)
+                # Exit blitting code
+                if self.exitbutton.collidepoint(self.data.mouse_pos):
+                    self.exitbutton = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
+                    self.window.blit(self.exit, (912, 1))
+                else:
+                    self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
+                    self.window.blit(self.exit, (912, 1))
+                # Blit and Update Particles (you can adjust the varis here)
+                self.PartSYS.draw(self.window)
+                self.PartSYS.update_particles(2, 0.5)
+                # Draw mouse
+                self.window.blit(self.cursor, (self.data.mouse_pos))
+                for self.event in pygame.event.get():
+                    if self.event.type == MOUSEBUTTONDOWN:
+                        # Create particles on click (you can adjust the varis here)
+                        self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
+                        if self.event.button == 1:
+                            if self.exitbutton.collidepoint(self.data.mouse_pos):
+                                pygame.quit()
+                                sys.exit()
+                    elif self.event.type == KEYDOWN:
+                        # If the pressed key is Backspace then erase one letter
+                        if self.event.key == K_BACKSPACE:
+                            self.user_code = self.user_code[0:- 1]
+                            self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+                        # If the key is not Backspace then add it to the text
+                        else:
+                            self.user_code += self.event.unicode
+                            self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+                pygame.display.update()
     
     class PartSYS:
         def __init__(self):
@@ -139,37 +168,14 @@ class app:
         
             pygame.mouse.set_visible(False)
 
-            while self.running:
-                self.window.fill(self.colors.black)
-                self.data.mouse_pos = pygame.mouse.get_pos()
-                # Blit screen
-                self.window.blit(self.exit, (912, 1))
-                pygame.draw.rect(self.window, self.colors.pancake, (0, 730, 950, 20))
-                pygame.draw.rect(self.window, self.colors.blue, (0, 0, 45, 750))
-                pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
-                self.window.blit(self.data.app_logo, (150, 150))
-                # Exit blitting code
-                if self.exitbutton.collidepoint(self.data.mouse_pos):
-                    self.exitbutton = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
-                    self.window.blit(self.exit, (912, 1))
-                else:
-                    self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
-                    self.window.blit(self.exit, (912, 1))
-                # Blit and Update Particles (you can adjust the varis here)
-                self.PartSYS.draw(self.window)
-                self.PartSYS.update_particles(2, 0.5)
-                # Draw mouse
-                self.window.blit(self.cursor, (self.data.mouse_pos))
-                for self.event in pygame.event.get():
-                    if self.event.type == MOUSEBUTTONDOWN:
-                        # Create particles on click (you can adjust the varis here)
-                        self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
-                        if self.event.button == 1:
-                            if self.exitbutton.collidepoint(self.data.mouse_pos):
-                                pygame.quit()
-                                sys.exit()
-            
-                pygame.display.update()
+            self.user_code = ""
+            self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+            self.user_code_text_rect = self.user_code_text.get_rect()
+            self.user_code_text_rect.x = 100
+            self.user_code_text_rect.y = 100
+
+            self.Editor.Go_To(self)
+
         except Exception as error:
             self.ErrorScreen.draw(self.window, str(error))
 

@@ -1,5 +1,5 @@
 # Pyncake Editor
-# Coding by Danix, CarrotOnCanvas and METGaming
+# Created by Danix. Coding by Danix, CarrotOnCanvas and METGaming
 # Artwork by Danix and METGaming
 # Font "Silver" by Poppy Works
 # Discord Rich Presence system "Pypresence" by qwertyquerty
@@ -58,7 +58,7 @@ class app:
                 self.particles.remove(pR)
         def draw(self, window):
             for p in self.particles:
-                pygame.draw.circle(window, (game.data.colors.white), (p[0], p[1]), p[2])
+                pygame.draw.circle(window, app.data.colors.white, (p[0], p[1]), p[2])
     
     PartSYS = PartSYS()
     
@@ -91,9 +91,6 @@ class app:
             self.up_bar = pygame.draw.rect(self.window, self.data.colors.grey, (0, 0, 1000, 25))
             self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
             self.window.blit(self.metadata.app_logo, (150, 150))
-            # Blit and Update Particles (you can adjust the varis here)
-            self.PartSYS.draw(self.window)
-            self.PartSYS.update_particles(4, 0.2)
             # Exit blitting code
             if self.exitbutton.collidepoint(self.data.mouse_pos):
                 self.exitbutton = pygame.draw.rect(self.window, self.data.colors.red, (880, 0, 70, 25))
@@ -101,6 +98,9 @@ class app:
             else:
                 self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
                 self.window.blit(self.exit, (912, 1))
+            # Blit and Update Particles (you can adjust the varis here)
+            self.PartSYS.draw(self.window)
+            self.PartSYS.update_particles(2.5, 0.5)
             # Draw mouse
             pygame.draw.rect(self.window, self.data.colors.cyan, (self.data.mouse_pos[0], self.data.mouse_pos[1], 20,20), 5)
             

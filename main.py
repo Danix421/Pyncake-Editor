@@ -71,6 +71,8 @@ class app:
         self.font = pygame.font.Font(self.data.fonts_dir + "Silver.ttf", 30)
 
         self.exit = self.font.render("X", True, self.data.colors.white)
+
+        self.cursor = pygame.image.load(self.data.graphics_dir + "cursor.png")
         
         if self.data.config["rich presence"]:
             try:
@@ -102,7 +104,7 @@ class app:
             self.PartSYS.draw(self.window)
             self.PartSYS.update_particles(2.5, 0.5)
             # Draw mouse
-            pygame.draw.rect(self.window, self.data.colors.cyan, (self.data.mouse_pos[0], self.data.mouse_pos[1], 20,20), 5)
+            self.window.blit(self.cursor, (self.data.mouse_pos))
             
             for self.event in pygame.event.get():
                 if self.event.type == MOUSEBUTTONDOWN:

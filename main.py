@@ -62,6 +62,9 @@ class app:
             self.PartSYS.update_particles(2, 0.5)
             # Draw mouse
             self.window.blit(self.cursor, (self.data.mouse_pos))
+
+            #Draw white rect
+            #pygame.draw.rect(self.window, self.colors.white, (0,0, 20,20))
             for self.event in pygame.event.get():
                 if self.event.type == MOUSEBUTTONDOWN:
                     # Create particles on click (you can adjust the varis here)
@@ -180,4 +183,5 @@ class app:
         except Exception as error:
             self.ErrorScreen.draw(self.window, str(error))
 
-app()
+if __name__ == "__main__":
+    app()

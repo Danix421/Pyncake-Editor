@@ -34,12 +34,13 @@ class app:
 
     cursor = pygame.image.load("Data/Graphics/cursor.png")
 
+    # Current app place where you are. Default: "Editor"
+    currentState = "Editor"
+
     window = pygame.display.set_mode(data.window_size, pygame.NOFRAME)
 
-    exit = font.render("X", True, colors.white)
-    exitbutton = pygame.draw.rect(window, colors.grey, (880, 0, 70, 25))
-    #current possible states: [Editor]
-    currentState = "Editor"
+    RP = pypresence.Presence("811677670718570536")
+
     class Editor:
         def Go_To(self):
             self.window.fill(self.colors.black)
@@ -62,9 +63,6 @@ class app:
             self.PartSYS.update_particles(2, 0.5)
             # Draw mouse
             self.window.blit(self.cursor, (self.data.mouse_pos))
-
-            #Draw white rect
-            #pygame.draw.rect(self.window, self.colors.white, (0,0, 20,20))
             for self.event in pygame.event.get():
                 if self.event.type == MOUSEBUTTONDOWN:
                     # Create particles on click (you can adjust the varis here)
@@ -78,6 +76,8 @@ class app:
                     if self.event.key == K_BACKSPACE:
                         self.user_code = self.user_code[0:- 1]
                         self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+                    elif self.event.key == K_RETURN:
+                        pass
                     # If the key is not Backspace then add it to the text
                     else:
                         self.user_code += self.event.unicode
@@ -115,6 +115,10 @@ class app:
             self.font = pygame.font.Font("Data/Fonts/FutilePro.ttf", 40)
             self.e_texts = []
         def draw(self, window, error):
+            if app.RP.active:
+                app.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "Ran into an error")
+            app.exit = app.font.render("X", True, app.colors.white)
+            app.exitbutton = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
             self.e_texts.append([self.font.render("Ops! The editor ran into an error", True, app.colors.white), [60,100]])
             self.e_texts.append([self.font.render("Here's the error code. Send it to the devs.", True, app.colors.white), [60, 170]])
             self.e_texts.append([self.font.render(error[0:35], True, app.colors.red), [60, 250]])
@@ -162,11 +166,15 @@ class app:
 
             if self.data.config["rich presence"]:
                 try:
-                    self.RP = pypresence.Presence("811677670718570536")
                     self.RP.connect()
-                    self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
+                    self.RP.active = True
                 except pypresence.exceptions.InvalidPipe:
-                    pass
+                    self.RP.active = False
+            else:
+                self.RP.active = False
+            
+            self.exit = self.font.render("X", True, self.colors.white)
+            self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
         
             pygame.mouse.set_visible(False)
 
@@ -178,6 +186,8 @@ class app:
 
             while self.running:
                 if self.currentState == "Editor":
+                    if self.RP.active:
+                        self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
                     self.Editor.Go_To(self)
 
         except Exception as error:

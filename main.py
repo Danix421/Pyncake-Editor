@@ -19,7 +19,8 @@ class app:
         window_size = (950, 750)
 
         config = {
-           "rich presence": True
+           "rich presence": True,
+           "particles": False
         }
         
         try:
@@ -65,8 +66,9 @@ class app:
             self.window.blit(self.cursor, (self.data.mouse_pos))
             for self.event in pygame.event.get():
                 if self.event.type == MOUSEBUTTONDOWN:
-                    # Create particles on click (you can adjust the varis here)
-                    self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
+                    # Create particles on click, if they are active (you can adjust the varis here)
+                    if self.data.config["particles"]:
+                        self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
                     if self.event.button == 1:
                         if self.exitbutton.collidepoint(self.data.mouse_pos):
                             pygame.quit()
@@ -115,6 +117,8 @@ class app:
             self.font = pygame.font.Font("Data/Fonts/FutilePro.ttf", 40)
             self.e_texts = []
         def draw(self, window, error):
+            pygame.display.set_caption(app.data.app_name)
+            pygame.display.set_icon(app.data.app_icon)
             if app.RP.active:
                 app.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "Ran into an error")
             app.exit = app.font.render("X", True, app.colors.white)
@@ -147,8 +151,9 @@ class app:
                 window.blit(app.cursor, (app.data.mouse_pos))
                 for self.event in pygame.event.get():
                     if self.event.type == MOUSEBUTTONDOWN:
-                        # Create particles on click (you can adjust the varis here)
-                        app.PartSYS.create_particles([app.data.mouse_pos[0], app.data.mouse_pos[1]], 12, 12)
+                        # Create particles on click, if they are active (you can adjust the varis here)
+                        if app.data.config["particles"]:
+                            app.PartSYS.create_particles([app.data.mouse_pos[0], app.data.mouse_pos[1]], 12, 12)
                         if self.event.button == 1:
                             if app.exitbutton.collidepoint(app.data.mouse_pos):
                                 pygame.quit()

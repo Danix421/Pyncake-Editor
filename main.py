@@ -1,5 +1,5 @@
 # Pyncake Editor
-# Coding by Danix, CarrotOnCanvas and METGaming
+# Created by Danix. Coding by Danix, CarrotOnCanvas and METGaming
 # Artwork by Danix and METGaming
 # Font "Silver" by Poppy Works
 # Discord Rich Presence system "Pypresence" by qwertyquerty
@@ -12,21 +12,15 @@ from Data.colors import Colors
 pygame.init()
 
 class app:
-    class metadata:
-        screen = pygame.display.Info()
+    class data:
         app_name = "Pyncake Editor"
         app_icon = pygame.image.load("app_icon.png")
         app_logo = pygame.image.load("Data/Graphics/pyncake.png")
         window_size = (950, 750)
-    
-    class data:
-        data_dir = "Data/"
-        graphics_dir = data_dir + "Graphics/"
-        fonts_dir = data_dir + "Fonts/"
-        colors = Colors()
 
         config = {
-           "rich presence": True
+           "rich presence": True,
+           "particles": False
         }
         
         try:
@@ -34,6 +28,63 @@ class app:
         except FileNotFoundError:
             json.dump(config, open("Data/config.pyncake", "w"))
             config = json.load(open("Data/config.pyncake", "r"))
+    
+    colors = Colors()
+
+    font = pygame.font.Font("Data/Fonts/Silver.ttf", 30)
+
+    cursor = pygame.image.load("Data/Graphics/cursor.png")
+
+    # Current app place where you are. Default: "Editor"
+    currentState = "Editor"
+
+    window = pygame.display.set_mode(data.window_size, pygame.NOFRAME)
+
+    RP = pypresence.Presence("811677670718570536")
+
+    class Editor:
+        def Go_To(self):
+            self.window.fill(self.colors.black)
+            self.data.mouse_pos = pygame.mouse.get_pos()
+            # Blit screen
+            self.window.blit(self.exit, (912, 1))
+            pygame.draw.rect(self.window, self.colors.pancake, (0, 730, 950, 20))
+            pygame.draw.rect(self.window, self.colors.blue, (0, 0, 45, 750))
+            pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
+            self.window.blit(self.user_code_text, self.user_code_text_rect)
+            # Exit blitting code
+            if self.exitbutton.collidepoint(self.data.mouse_pos):
+                self.exitbutton = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
+                self.window.blit(self.exit, (912, 1))
+            else:
+                self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
+                self.window.blit(self.exit, (912, 1))
+            # Blit and Update Particles (you can adjust the varis here)
+            self.PartSYS.draw(self.window)
+            self.PartSYS.update_particles(2, 0.5)
+            # Draw mouse
+            self.window.blit(self.cursor, (self.data.mouse_pos))
+            for self.event in pygame.event.get():
+                if self.event.type == MOUSEBUTTONDOWN:
+                    # Create particles on click, if they are active (you can adjust the varis here)
+                    if self.data.config["particles"]:
+                        self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
+                    if self.event.button == 1:
+                        if self.exitbutton.collidepoint(self.data.mouse_pos):
+                            pygame.quit()
+                            sys.exit()
+                elif self.event.type == KEYDOWN:
+                    # If the pressed key is Backspace then erase one letter
+                    if self.event.key == K_BACKSPACE:
+                        self.user_code = self.user_code[0:- 1]
+                        self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+                    elif self.event.key == K_RETURN:
+                        pass
+                    # If the key is not Backspace then add it to the text
+                    else:
+                        self.user_code += self.event.unicode
+                        self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+            pygame.display.update()
     
     class PartSYS:
         def __init__(self):
@@ -58,61 +109,94 @@ class app:
                 self.particles.remove(pR)
         def draw(self, window):
             for p in self.particles:
-                pygame.draw.circle(window, (game.data.colors.white), (p[0], p[1]), p[2])
+                pygame.draw.circle(window, app.colors.white, (p[0], p[1]), p[2])
+    
+    class ErrorScreen:
+        def __init__(self):
+            self.fallen_pancakes = pygame.image.load("Data/Graphics/fallen_over_pancakes.png")
+            self.font = pygame.font.Font("Data/Fonts/FutilePro.ttf", 40)
+            self.e_texts = []
+        def draw(self, window, error):
+            pygame.display.set_caption(app.data.app_name)
+            pygame.display.set_icon(app.data.app_icon)
+            if app.RP.active:
+                app.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "Ran into an error")
+            app.exit = app.font.render("X", True, app.colors.white)
+            app.exitbutton = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
+            self.e_texts.append([self.font.render("Ops! The editor ran into an error", True, app.colors.white), [60,100]])
+            self.e_texts.append([self.font.render("Here's the error code. Send it to the devs.", True, app.colors.white), [60, 170]])
+            self.e_texts.append([self.font.render(error[0:35], True, app.colors.red), [60, 250]])
+            self.e_texts.append([self.font.render(error[35:len(error)], True, app.colors.red), [60, 320]])
+            pygame.mouse.set_visible(False)
+            while True:
+                app.data.mouse_pos = pygame.mouse.get_pos()
+                # Blit the screen
+                window.fill(app.colors.black)
+                window.blit(self.fallen_pancakes, (60,450))
+                pygame.draw.rect(window, app.colors.blue, (0, 0, 45, 750))
+                pygame.draw.rect(window, app.colors.grey, (0, 0, 1000, 25))
+                pygame.draw.rect(window, app.colors.red, (45, 225, 1000, 3))
+                for t in self.e_texts:
+                    window.blit(t[0], t[1])
+                if app.exitbutton.collidepoint(app.data.mouse_pos):
+                    app.exitbutton = pygame.draw.rect(window, app.colors.red, (880, 0, 70, 25))
+                    window.blit(app.exit, (912, 1))
+                else:
+                    app.exitbutton = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
+                    window.blit(app.exit, (912, 1))
+                # Blit and Update Particles (you can adjust the varis here)
+                app.PartSYS.draw(window)
+                app.PartSYS.update_particles(2, 0.5)
+                # Draw mouse
+                window.blit(app.cursor, (app.data.mouse_pos))
+                for self.event in pygame.event.get():
+                    if self.event.type == MOUSEBUTTONDOWN:
+                        # Create particles on click, if they are active (you can adjust the varis here)
+                        if app.data.config["particles"]:
+                            app.PartSYS.create_particles([app.data.mouse_pos[0], app.data.mouse_pos[1]], 12, 12)
+                        if self.event.button == 1:
+                            if app.exitbutton.collidepoint(app.data.mouse_pos):
+                                pygame.quit()
+                                sys.exit()
+                pygame.display.update()
     
     PartSYS = PartSYS()
-    
+    ErrorScreen = ErrorScreen()
+
     def __init__(self):
-        self.window = pygame.display.set_mode(self.metadata.window_size, pygame.NOFRAME)
-        pygame.display.set_caption(self.metadata.app_name)
-        pygame.display.set_icon(self.metadata.app_icon)
-        self.running = True
+        try:
+            pygame.display.set_caption(self.data.app_name)
+            pygame.display.set_icon(self.data.app_icon)
+            self.running = True
 
-        self.font = pygame.font.Font(self.data.fonts_dir + "Silver.ttf", 30)
-
-        self.exit = self.font.render("X", True, self.data.colors.white)
-        
-        if self.data.config["rich presence"]:
-            try:
-                self.RP = pypresence.Presence("811677670718570536")
-                self.RP.connect()
-                self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
-            except pypresence.exceptions.InvalidPipe:
-                pass
-        
-        pygame.mouse.set_visible(False)
-        while self.running:
-            self.window.fill((0,0,0))
-            self.data.mouse_pos = pygame.mouse.get_pos()
-            # Blit screen
-            self.window.blit(self.exit, (912, 1))
-            self.down_bar = pygame.draw.rect(self.window, self.data.colors.pancake, (0, 730, 950, 20))
-            self.left_bar = pygame.draw.rect(self.window, self.data.colors.blue, (0, 0, 45, 750))
-            self.up_bar = pygame.draw.rect(self.window, self.data.colors.grey, (0, 0, 1000, 25))
-            self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
-            self.window.blit(self.metadata.app_logo, (150, 150))
-            # Blit and Update Particles (you can adjust the varis here)
-            self.PartSYS.draw(self.window)
-            self.PartSYS.update_particles(4, 0.2)
-            # Exit blitting code
-            if self.exitbutton.collidepoint(self.data.mouse_pos):
-                self.exitbutton = pygame.draw.rect(self.window, self.data.colors.red, (880, 0, 70, 25))
-                self.window.blit(self.exit, (912, 1))
+            if self.data.config["rich presence"]:
+                try:
+                    self.RP.connect()
+                    self.RP.active = True
+                except pypresence.exceptions.InvalidPipe:
+                    self.RP.active = False
             else:
-                self.exitbutton = pygame.draw.rect(self.window, self.data.colors.grey, (880, 0, 70, 25))
-                self.window.blit(self.exit, (912, 1))
-            # Draw mouse
-            pygame.draw.rect(self.window, self.data.colors.cyan, (self.data.mouse_pos[0], self.data.mouse_pos[1], 20,20), 5)
+                self.RP.active = False
             
-            for self.event in pygame.event.get():
-                if self.event.type == MOUSEBUTTONDOWN:
-                    # Create particles on click (you can adjust the varis here)
-                    self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
-                    if self.event.button == 1:
-                        if self.exitbutton.collidepoint(self.data.mouse_pos):
-                            pygame.quit()
-                            sys.exit()
+            self.exit = self.font.render("X", True, self.colors.white)
+            self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
+        
+            pygame.mouse.set_visible(False)
 
-            pygame.display.update()
+            self.user_code = ""
+            self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+            self.user_code_text_rect = self.user_code_text.get_rect()
+            self.user_code_text_rect.x = 100
+            self.user_code_text_rect.y = 100
 
-app()
+            while self.running:
+                if self.currentState == "Editor":
+                    if self.RP.active:
+                        self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
+                    self.Editor.Go_To(self)
+
+        except Exception as error:
+            self.ErrorScreen.draw(self.window, str(error))
+
+if __name__ == "__main__":
+    app()

@@ -41,50 +41,6 @@ class app:
     window = pygame.display.set_mode(data.window_size, pygame.NOFRAME)
 
     RP = pypresence.Presence("811677670718570536")
-
-    class Editor:
-        def Go_To(self):
-            self.window.fill(self.colors.black)
-            self.data.mouse_pos = pygame.mouse.get_pos()
-            # Blit screen
-            self.window.blit(self.exit, (912, 1))
-            pygame.draw.rect(self.window, self.colors.pancake, (0, 730, 950, 20))
-            pygame.draw.rect(self.window, self.colors.blue, (0, 0, 45, 750))
-            pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
-            self.window.blit(self.user_code_text, self.user_code_text_rect)
-            # Exit blitting code
-            if self.exitbutton.collidepoint(self.data.mouse_pos):
-                self.exitbutton = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
-                self.window.blit(self.exit, (912, 1))
-            else:
-                self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
-                self.window.blit(self.exit, (912, 1))
-            # Blit and Update Particles (you can adjust the varis here)
-            self.PartSYS.draw(self.window)
-            self.PartSYS.update_particles(2, 0.5)
-            # Draw mouse
-            self.window.blit(self.cursor, (self.data.mouse_pos))
-            for self.event in pygame.event.get():
-                if self.event.type == MOUSEBUTTONDOWN:
-                    # Create particles on click, if they are active (you can adjust the varis here)
-                    if self.data.config["particles"]:
-                        self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
-                    if self.event.button == 1:
-                        if self.exitbutton.collidepoint(self.data.mouse_pos):
-                            pygame.quit()
-                            sys.exit()
-                elif self.event.type == KEYDOWN:
-                    # If the pressed key is Backspace then erase one letter
-                    if self.event.key == K_BACKSPACE:
-                        self.user_code = self.user_code[0:- 1]
-                        self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
-                    elif self.event.key == K_RETURN:
-                        pass
-                    # If the key is not Backspace then add it to the text
-                    else:
-                        self.user_code += self.event.unicode
-                        self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
-            pygame.display.update()
     
     class PartSYS:
         def __init__(self):
@@ -119,8 +75,6 @@ class app:
         def draw(self, window, error):
             pygame.display.set_caption(app.data.app_name)
             pygame.display.set_icon(app.data.app_icon)
-            if app.RP.active:
-                app.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "Ran into an error")
             app.exit = app.font.render("X", True, app.colors.white)
             app.exitbutton = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
             self.e_texts.append([self.font.render("Ops! The editor ran into an error", True, app.colors.white), [60,100]])
@@ -189,13 +143,58 @@ class app:
             self.user_code_text_rect.x = 100
             self.user_code_text_rect.y = 100
 
+            if self.RP.active:
+                self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
+
             while self.running:
-                if self.currentState == "Editor":
-                    if self.RP.active:
-                        self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
-                    self.Editor.Go_To(self)
+                self.window.fill(self.colors.black)
+                self.data.mouse_pos = pygame.mouse.get_pos()
+                # Blit screen
+                self.window.blit(self.exit, (912, 1))
+                pygame.draw.rect(self.window, self.colors.pancake, (0, 730, 950, 20))
+                pygame.draw.rect(self.window, self.colors.blue, (0, 0, 45, 750))
+                pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
+                self.window.blit(self.user_code_text, self.user_code_text_rect)
+                # Exit blitting code
+                if self.exitbutton.collidepoint(self.data.mouse_pos):
+                    self.exitbutton = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
+                    self.window.blit(self.exit, (912, 1))
+                else:
+                    self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
+                    self.window.blit(self.exit, (912, 1))
+                # Blit and Update Particles (you can adjust the varis here)
+                self.PartSYS.draw(self.window)
+                self.PartSYS.update_particles(2, 0.5)
+                # Draw mouse
+                self.window.blit(self.cursor, (self.data.mouse_pos))
+                for self.event in pygame.event.get():
+                    if self.event.type == MOUSEBUTTONDOWN:
+                        # Create particles on click, if they are active (you can adjust the varis here)
+                        if self.data.config["particles"]:
+                            self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
+                        if self.event.button == 1:
+                            if self.exitbutton.collidepoint(self.data.mouse_pos):
+                                pygame.quit()
+                                sys.exit()
+                    elif self.event.type == KEYDOWN:
+                        # If the pressed key is Backspace then erase one letter
+                        if self.event.key == K_BACKSPACE:
+                            if self.currentState == "Editor":
+                                self.user_code = self.user_code[0:- 1]
+                                self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+                        elif self.event.key == K_RETURN:
+                            pass
+                        # If the key is not Backspace then add it to the text
+                        else:
+                            if self.currentState == "Editor":
+                                self.user_code += self.event.unicode
+                                self.user_code_text = self.font.render(self.user_code, True, self.colors.white)
+                pygame.display.update()
 
         except Exception as error:
+            self.currentState = "Error Screen"
+            if self.RP.active:
+                self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "Ran into an error")
             self.ErrorScreen.draw(self.window, str(error))
 
 if __name__ == "__main__":

@@ -154,7 +154,8 @@ class app:
                 pygame.draw.rect(self.window, self.colors.pancake, (0, 730, 950, 20))
                 pygame.draw.rect(self.window, self.colors.blue, (0, 0, 45, 750))
                 pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
-                self.window.blit(self.user_code_text, self.user_code_text_rect)
+                if self.currentState == "Editor":
+                    self.window.blit(self.user_code_text, self.user_code_text_rect)
                 # Exit blitting code
                 if self.exitbutton.collidepoint(self.data.mouse_pos):
                     self.exitbutton = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))

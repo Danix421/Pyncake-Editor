@@ -87,7 +87,7 @@ class app:
                 # Blit the screen
                 window.fill(app.colors.black)
                 window.blit(self.fallen_pancakes, (60,450))
-                pygame.draw.rect(window, app.colors.blue, (0, 0, 45, 750))
+                pygame.draw.rect(window, app.colors.left_bar, (0, 0, 45, 750))
                 pygame.draw.rect(window, app.colors.grey, (0, 0, 1000, 25))
                 pygame.draw.rect(window, app.colors.red, (45, 225, 1000, 3))
                 for t in self.e_texts:
@@ -151,8 +151,8 @@ class app:
                 self.data.mouse_pos = pygame.mouse.get_pos()
                 # Blit screen
                 self.window.blit(self.exit, (912, 1))
-                pygame.draw.rect(self.window, self.colors.pancake, (0, 730, 950, 20))
-                pygame.draw.rect(self.window, self.colors.blue, (0, 0, 45, 750))
+                pygame.draw.rect(self.window, self.colors.down_bar, (0, 730, 950, 20))
+                pygame.draw.rect(self.window, self.colors.left_bar, (0, 0, 45, 750))
                 pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
                 if self.currentState == "Editor":
                     self.window.blit(self.user_code_text, self.user_code_text_rect)

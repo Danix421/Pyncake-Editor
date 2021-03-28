@@ -19,9 +19,15 @@ For use the source code, you need Python 3.8.7 or above. Extra requirements for 
 You can contribute to this editor by helping to develop it, and for that, you will have to view the contribution instructions and rules. There are available [here](https://github.con/Danix421/Pyncake-Editor/blob/main/CONTRIBUTING.md)
 
 ## Credits
-Pyncake Editor created by Danix (me). Coding by Danix and [METGaming](https://github.com/METGameDev), minimal contributions by [CarrotOnCanvas](https://github.com/CarrotOnCanvas/)
+Pyncake Editor created and coded by Danix (me).
 
-Artwork by Danix and [METGaming](https://github.com/METGameDev).
+Editor's logo and icon design by Danix.
+
+#### Contributors:
+
+- [METGaming](https://github.com/METGameDev) - Particle system, error screen, state changing, editor's cover and logo artwork, custom cursor idea and bug fixes.
+
+- [CarrotOnCanvas](https://github.com/CarrotOnCanvas) - Config saving and basic text input.
 
 Font "Silver" by [Poppy Works](https://poppyworks.itch.io).
 

@@ -21,7 +21,7 @@ You can contribute to this editor by helping to develop it, and for that, you wi
 ## Credits
 Pyncake Editor created and coded by Danix (me).
 
-Editor's logo and icon design by Danix.
+Artwork, Pyncake's logo design and Pyncake's icon design by Danix.
 
 ### Contributors
 

@@ -23,7 +23,7 @@ Pyncake Editor created and coded by Danix (me).
 
 Editor's logo and icon design by Danix.
 
-### Contributors:
+### Contributors
 
 - [METGaming](https://github.com/METGameDev) - Particle system, error screen, state changing, editor's cover and logo artwork, custom cursor idea and bug fixes.
 

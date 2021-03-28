@@ -43,3 +43,6 @@ This editor is under GNU General Public License v3 (GPL v3), you can view it [he
 [Futile Pro](https://somepx.itch.io/humble-fonts-free) font is under Common Sense License (CSL), you can view it [here](https://palmentieri.it/somepx/license.txt)
 
 [Pypresence](https://github.com/qwertyquerty/pypresence) is under MIT License, you can view it [here](https://github.com/qwertyquerty/pypresence/blob/main/LICENSE).
+
+# Support
+For report any bug, open an issue in the [Pyncake Editor's repo](https://github.com/Danix421/Pyncake-Editor).

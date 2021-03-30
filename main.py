@@ -146,7 +146,7 @@ class app:
             self.app_title = self.font.render(self.data.app_name, True, self.colors.white)
 
             if self.RP.active:
-                self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "In editor")
+                self.RP.update(large_image = "coding", large_text = "Coding", small_image = "appicon", small_text = "Pyncake Editor",state = "In editor")
 
             while self.running:
                 self.window.fill(self.colors.black)
@@ -228,7 +228,7 @@ class app:
         except Exception as error:
             self.currentState = "Error Screen"
             if self.RP.active:
-                self.RP.update(large_image = "appicon", large_text = "Pyncake Editor", state = "Ran into an error")
+                self.RP.update(large_image = "error", large_text = "Ran into an error", small_image = "appicon", small_text = "Pyncake Editor", state = "Ran into an error")
             self.ErrorScreen.draw(self.window, str(error))
 
 if __name__ == "__main__":

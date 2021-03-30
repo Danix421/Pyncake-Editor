@@ -75,13 +75,10 @@ class app:
             self.font = pygame.font.Font("Data/Fonts/FutilePro.ttf", 40)
             self.e_texts = []
         def draw(self, window, error):
-            app.exit = app.font.render("X", True, app.colors.white)
-            app.exitbutton = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
             self.e_texts.append([self.font.render("Ops! The editor ran into an error", True, app.colors.white), [60,100]])
             self.e_texts.append([self.font.render("Here's the error code. Send it to the devs.", True, app.colors.white), [60, 170]])
             self.e_texts.append([self.font.render(error[0:35], True, app.colors.red), [60, 250]])
             self.e_texts.append([self.font.render(error[35:len(error)], True, app.colors.red), [60, 320]])
-            pygame.mouse.set_visible(False)
             while True:
                 app.data.mouse_pos = pygame.mouse.get_pos()
                 # Blit the screen
@@ -90,6 +87,7 @@ class app:
                 pygame.draw.rect(window, app.colors.left_bar, (0, 0, 45, 750))
                 pygame.draw.rect(window, app.colors.grey, (0, 0, 1000, 25))
                 pygame.draw.rect(window, app.colors.red, (45, 225, 1000, 3))
+                app.window.blit(app.app_title, (400, 0))
                 for t in self.e_texts:
                     window.blit(t[0], t[1])
                 if app.exitbutton.collidepoint(app.data.mouse_pos):
@@ -117,7 +115,7 @@ class app:
     PartSYS = PartSYS()
     ErrorScreen = ErrorScreen()
 
-    def __init__(self):
+    def run(self):
         try:
             pygame.display.set_caption(self.data.app_name)
             pygame.display.set_icon(self.data.app_icon)
@@ -230,4 +228,4 @@ class app:
             self.ErrorScreen.draw(self.window, str(error))
 
 if __name__ == "__main__":
-    app()
+    app.run(app)

@@ -25,7 +25,7 @@ Artwork, Pyncake's logo design and Pyncake's icon design by Danix.
 
 ### Contributors
 
-- [METGaming](https://github.com/METGameDev) - Particle system, error screen, state changing, editor's cover and logo artwork, custom cursor idea and bug fixes.
+- [METGaming](https://github.com/METGameDev) - Particle system, error screen, state changing, editor's cover and logo artwork, custom cursor idea, fallen pancakes artwork and bug fixes.
 
 - [CarrotOnCanvas](https://github.com/CarrotOnCanvas) - Config saving and basic text input.
 

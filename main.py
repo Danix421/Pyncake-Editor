@@ -75,8 +75,6 @@ class app:
             self.font = pygame.font.Font("Data/Fonts/FutilePro.ttf", 40)
             self.e_texts = []
         def draw(self, window, error):
-            pygame.display.set_caption(app.data.app_name)
-            pygame.display.set_icon(app.data.app_icon)
             app.exit = app.font.render("X", True, app.colors.white)
             app.exitbutton = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
             self.e_texts.append([self.font.render("Ops! The editor ran into an error", True, app.colors.white), [60,100]])

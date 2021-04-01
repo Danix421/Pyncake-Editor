@@ -46,12 +46,12 @@ class app:
     class PartSYS:
         def __init__(self):
             self.particles = []
-        def create_particles(self, loc, size, amount,):
+        def create_particles(self, loc, size, amount):
             for r in range(0, amount):
                 self.particles.append([loc[0], loc[1], \
                         random.randint(size/2, size), random.uniform(0.00, 359.00)])
         def update_particles(self, speed, decay):
-            particles_to_remove = []
+            self.particles_to_remove = []
 
             for p in self.particles:
                 p[0] += math.cos(math.radians(p[3])) * speed
@@ -59,10 +59,10 @@ class app:
 
                 p[2] -= decay
                 if p[2] < 0:
-                    particles_to_remove.append(p)
+                    self.particles_to_remove.append(p)
                 p[3] += 0
 
-            for pR in particles_to_remove:
+            for pR in self.particles_to_remove:
                 self.particles.remove(pR)
         def draw(self, window):
             for p in self.particles:

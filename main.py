@@ -1,10 +1,10 @@
 # Pyncake Editor
 # Created and coded by Danix.
 # Artwork, logo and icon design by Danix.
-# Contributions by METGaming and CarrotOnCanvas
-# Font "Silver" by Poppy Works
-# Font "Futile Pro" by Eeve Somepx
-# Discord Rich Presence system "Pypresence" by qwertyquerty
+# Contributions by METGaming and CarrotOnCanvas.
+# Font "Silver" by Poppy Works.
+# Font "Futile Pro" by Eeve Somepx.
+# Discord Rich Presence system "Pypresence" by qwertyquerty.
 
 import pygame, sys, pypresence, json
 import math, random

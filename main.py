@@ -6,8 +6,7 @@
 # Font "Futile Pro" by Eeve Somepx.
 # Discord Rich Presence system "Pypresence" by qwertyquerty.
 
-import pygame, sys, pypresence, json
-import math, random
+import pygame, sys, pypresence, json, math, random
 from pygame.locals import *
 from Data.colors import Colors
 

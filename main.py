@@ -19,6 +19,7 @@ class app:
         app_logo = pygame.image.load("Data/Graphics/pyncake.png")
         window_size = (950, 750)
 
+        # Config file saving by CarrotOnCanvas, major upgrades by Danix
         config = {
            "rich presence": True,
            "particles": False
@@ -44,6 +45,7 @@ class app:
     RP = pypresence.Presence("811677670718570536")
     
     class PartSYS:
+        # Particles system by METGaming, bug fixes by Danix
         def __init__(self):
             self.particles = []
         def create_particles(self, loc, size, amount):
@@ -69,6 +71,7 @@ class app:
                 pygame.draw.circle(window, app.colors.white, (p[0], p[1]), p[2])
     
     class ErrorScreen:
+        # Error screen by METGaming, some updates by Danix
         def __init__(self):
             self.fallen_pancakes = pygame.image.load("Data/Graphics/fallen_over_pancakes.png")
             self.font = pygame.font.Font("Data/Fonts/FutilePro.ttf", 40)

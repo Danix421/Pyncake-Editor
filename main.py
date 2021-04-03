@@ -92,11 +92,11 @@ class app:
                 app.window.blit(app.app_title, (400, 0))
                 for t in self.e_texts:
                     window.blit(t[0], t[1])
-                if app.exitbutton.collidepoint(app.data.mouse_pos):
-                    app.exitbutton = pygame.draw.rect(window, app.colors.red, (880, 0, 70, 25))
+                if app.exit_button.collidepoint(app.data.mouse_pos):
+                    app.exit_button = pygame.draw.rect(window, app.colors.red, (880, 0, 70, 25))
                     window.blit(app.exit, (912, 1))
                 else:
-                    app.exitbutton = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
+                    app.exit_button = pygame.draw.rect(window, app.colors.grey, (880, 0, 70, 25))
                     window.blit(app.exit, (912, 1))
                 # Blit and Update Particles (you can adjust the varis here)
                 app.PartSYS.draw(window)
@@ -109,7 +109,7 @@ class app:
                         if app.data.config["particles"]:
                             app.PartSYS.create_particles([app.data.mouse_pos[0], app.data.mouse_pos[1]], 12, 12)
                         if self.event.button == 1:
-                            if app.exitbutton.collidepoint(app.data.mouse_pos):
+                            if app.exit_button.collidepoint(app.data.mouse_pos):
                                 pygame.quit()
                                 sys.exit()
                 pygame.display.update()
@@ -133,7 +133,7 @@ class app:
                 self.RP.active = False
             
             self.exit = self.font.render("X", True, self.colors.white)
-            self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
+            self.exit_button = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
         
             pygame.mouse.set_visible(False)
 
@@ -142,6 +142,10 @@ class app:
             self.user_code_saved = False
 
             self.app_title = self.font.render(self.data.app_name, True, self.colors.white)
+
+            self.down_bar = pygame.Rect(0, 730, 950, 20)
+            self.left_bar = pygame.Rect(0, 0, 45, 750)
+            self.up_bar = pygame.Rect(0, 0, 1000, 25)
 
             if self.RP.active:
                 self.RP.update(large_image = "coding", large_text = "Coding", small_image = "appicon", small_text = "Pyncake Editor",state = "In editor")
@@ -165,16 +169,16 @@ class app:
                         self.window.blit(self.user_code_text, self.user_code_text_rect)
                         self.window.blit(self.user_code_currentLine, self.user_code_currentLine_rect)
                 self.window.blit(self.exit, (912, 1))
-                pygame.draw.rect(self.window, self.colors.down_bar, (0, 730, 950, 20))
-                pygame.draw.rect(self.window, self.colors.left_bar, (0, 0, 45, 750))
-                pygame.draw.rect(self.window, self.colors.grey, (0, 0, 1000, 25))
+                pygame.draw.rect(self.window, self.colors.down_bar, self.down_bar)
+                pygame.draw.rect(self.window, self.colors.left_bar, self.left_bar)
+                pygame.draw.rect(self.window, self.colors.grey, self.up_bar)
                 self.window.blit(self.app_title, (400, 0))
                 # Exit blitting code
-                if self.exitbutton.collidepoint(self.data.mouse_pos):
-                    self.exitbutton = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
+                if self.exit_button.collidepoint(self.data.mouse_pos):
+                    self.exit_button = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
                     self.window.blit(self.exit, (912, 1))
                 else:
-                    self.exitbutton = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
+                    self.exit_button = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
                     self.window.blit(self.exit, (912, 1))
                 # Blit and Update Particles (you can adjust the varis here)
                 self.PartSYS.draw(self.window)
@@ -187,7 +191,7 @@ class app:
                         if self.data.config["particles"]:
                             self.PartSYS.create_particles([self.data.mouse_pos[0], self.data.mouse_pos[1]], 12, 12)
                         if self.event.button == 1:
-                            if self.exitbutton.collidepoint(self.data.mouse_pos):
+                            if self.exit_button.collidepoint(self.data.mouse_pos):
                                 # If the user wan't to exit, save his code and exit
                                 with open("code.txt", "w+") as self.code:
                                     for line in range(self.user_code_lines):

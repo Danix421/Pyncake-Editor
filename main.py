@@ -133,7 +133,7 @@ class app:
                 self.RP.active = False
             
             self.exit = self.font.render("X", True, self.colors.white)
-            self.exit_button = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
+            self.exit_button = pygame.Rect(880, 0, 70, 27)
         
             pygame.mouse.set_visible(False)
 
@@ -144,8 +144,13 @@ class app:
             self.app_title = self.font.render(self.data.app_name, True, self.colors.white)
 
             self.down_bar = pygame.Rect(0, 730, 950, 20)
-            self.left_bar = pygame.Rect(0, 0, 45, 750)
-            self.up_bar = pygame.Rect(0, 0, 1000, 25)
+            self.left_bar = pygame.Rect(0, 0, 45, 730)
+            self.up_bar = pygame.Rect(0, 0, 1000, 27)
+
+            self.file = self.font.render("File", True, self.colors.white)
+            self.file_button = self.file.get_rect()
+            self.file_button.x = 70
+            self.file_button.y = 2
 
             if self.RP.active:
                 self.RP.update(large_image = "coding", large_text = "Coding", small_image = "appicon", small_text = "Pyncake Editor",state = "In editor")
@@ -173,13 +178,14 @@ class app:
                 pygame.draw.rect(self.window, self.colors.left_bar, self.left_bar)
                 pygame.draw.rect(self.window, self.colors.grey, self.up_bar)
                 self.window.blit(self.app_title, (400, 0))
+                self.window.blit(self.file, self.file_button)
                 # Exit blitting code
                 if self.exit_button.collidepoint(self.data.mouse_pos):
-                    self.exit_button = pygame.draw.rect(self.window, self.colors.red, (880, 0, 70, 25))
-                    self.window.blit(self.exit, (912, 1))
+                    pygame.draw.rect(self.window, self.colors.red, self.exit_button)
+                    self.window.blit(self.exit, (912, 3))
                 else:
-                    self.exit_button = pygame.draw.rect(self.window, self.colors.grey, (880, 0, 70, 25))
-                    self.window.blit(self.exit, (912, 1))
+                    pygame.draw.rect(self.window, self.colors.grey, self.exit_button)
+                    self.window.blit(self.exit, (912, 3))
                 # Blit and Update Particles (you can adjust the varis here)
                 self.PartSYS.draw(self.window)
                 self.PartSYS.update_particles(2, 0.5)

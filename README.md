@@ -1,22 +1,25 @@
 # Pyncake Editor [![Made with love by Danix](https://img.shields.io/badge/made%20with%20♡%20by-danix-4287f5?style=for-the-badge)](https://github.com/Danix421) [![Pypresence](https://img.shields.io/badge/using-pypresence-00bb88.svg?style=for-the-badge&logo=discord&logoWidth=20)](https://github.com/qwertyquerty/pypresence) [![itch.io](https://img.shields.io/badge/itch.io-fa5c5c?style=for-the-badge&logo=itch.io&logoColor=white)](https://danix421.itch.io/pyncake-editor)
 Pyncake Editor is the new powerful and simplest code editor, made with Python, for Python.
 
-This editor don't have too much feactures, but haves the needed for simple developers. It is really fast; don't needs too much requirements, it can run in a PC with 2GB of RAM and no graphic card needed (tested)! You're a developer that like videogames? Don't worry, this is perfect for you: Pyncake Editor integrates with Discord Rich Presence thanks to Pypresence, an advanced Rich Presence system, made with Python.
-
-## Preview
-This editor is currently in development. You can got a preview version of it, but it only have the basics things like code editing, rich presence, etc. NOTE 1: You can program in the preview version without lost the code. When you close the editor, your code is saved in a file named "code.txt". NOTE 2: To active the particles and rich presence, you will have to modify a file in the "Data" folder named "config.pyncake", that is written in JSON. By default, the rich presence is active and the particles aren't active.
+## Feactures
+- Don't need too much requirements, thanks to Python
+- It size is 10mb
+- Portable, you can use it where you wan't (and can)
+- Code without a potent PC, but with style
+- Integrated rich presence for Discord
 
 ## System Requirements
-Operative System: Windows Vista, 32 or 64 bits, or above (tested in Windows 7).
+Operative System: Windows 7, 32 bits.
 
-RAM: 2GB (the editor don't use more of 1GB).
-
-Graphic Card: None, it don't need it (tested).
+RAM: 2GB.
 
 For use the source code, you need Python 3.8.7 or above. Extra requirements for use the source code available [here](https://github.com/Danix421/Pyncake-Editor/blob/main/requirements.txt).
 
+## Development
+This editor is currently in development. You can got a preview version of it, but it only have the basics things like code editing, rich presence, etc.
+
 ## Contributing
-You can contribute to this editor by helping to develop it, and for that, you will have to view the contribution instructions and rules. There are available [here](https://github.con/Danix421/Pyncake-Editor/blob/main/CONTRIBUTING.md)
+You can contribute to this editor by helping to develop it, and for that, you will have to view the contribution instructions and rules. There are available here. All the contributions has to be made in the [Pyncake Editor's GitHub repo](https://github.com/Danix421/Pyncake-Editor).
 
 ## Credits
 Pyncake Editor created and coded by Danix (me).
@@ -25,24 +28,30 @@ Artwork, Pyncake's logo design and Pyncake's icon design by Danix.
 
 ### Contributors
 
-- [METGaming](https://github.com/METGameDev) - Particle system, error screen, state changing, editor's cover and logo artwork, custom cursor idea, fallen pancakes artwork and bug fixes.
-
-- [CarrotOnCanvas](https://github.com/CarrotOnCanvas) - Config saving and basic text input.
+- [METGaming](https://metgaming.itch.io) - Particle system, error screen, state changing, editor's cover and logo artwork, custom cursor idea, fallen pancakes artwork and bug fixes.
+- [CarrotOnCanvas](https://carrotoncanvas.itch.io) - Config saving and basic text input.
 
 Font "Silver" by [Poppy Works](https://poppyworks.itch.io).
 
-Font "Futile Pro" by [Eeve Somepx](https://somepx.com/)
+Font "Futile Pro" by [Eeve Somepx](https://somepx.com).
+
+Font "Sora", the used for this page, available in [Google Fonts](https://fonts.google.com/specimen/Sora) and [GitHub](https://github.com/sora-xor/sora-font).
 
 Discord Rich Presence system "Pypresence" by [qwertyquerty](https://github.com/qwertyquerty).
 
 ## License
-This editor is under GNU General Public License v3 (GPL v3), you can view it [here](https://github.com/Danix421/Pyncake-Editor/blob/main/LICENSE.md).
+Pyncake Editor is under GNU General Public License v3 (GPL v3), you can view it [here](https://github.com/Danix421/Pyncake-Editor/blob/main/LICENSE.md).
 
-[Silver](https://poppyworks.itch.io/silver) font is under Creative Commons Attribution 4.0 International (CC BY 4.0), you can view the "human readable" version [here](https://poppyworks.itch.io/silver)
+[Silver](https://poppyworks.itch.io/silver) font is under Creative Commons Attribution 4.0 International, you can view the "human readable" version [here](https://poppyworks.itch.io/silver).
 
-[Futile Pro](https://somepx.itch.io/humble-fonts-free) font is under Common Sense License (CSL), you can view it [here](https://palmentieri.it/somepx/license.txt)
+[Futile Pro](https://somepx.itch.io/humble-fonts-free) font is under Common Sense License (CSL), you can view it [here](https://palmentieri.it/somepx/license.txt).
+
+[Sora](https://github.com/sora-xor/sora-font/) font is under Open Font License (OFL), you can view it [here](https://github.com/sora-xor/sora-font/blob/master/OFL.txt).
 
 [Pypresence](https://github.com/qwertyquerty/pypresence) is under MIT License, you can view it [here](https://github.com/qwertyquerty/pypresence/blob/main/LICENSE).
 
+## Documentation
+Pyncake Editor's documentation is currently not available, but i'm working in it.
+
 ## Support
-For report any bug, open an issue in the [Pyncake Editor's GitHub repo](https://github.com/Danix421/Pyncake-Editor) or contact Danix on Discord as Danix#1098.
+For report any bug, open an issue in the [Pyncake Editor's GitHub repo](https://github.com/Danix421/Pyncake-Editor).

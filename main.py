@@ -24,13 +24,13 @@ class app:
            "rich presence": True,
            "particles": False
         }
-        
+
         try:
             config = json.load(open("Data/config.pyncake", "r"))
         except FileNotFoundError:
             json.dump(config, open("Data/config.pyncake", "w"))
             config = json.load(open("Data/config.pyncake", "r"))
-    
+
     colors = Colors()
 
     font = pygame.font.Font("Data/Fonts/Silver.ttf", 30)
@@ -43,7 +43,7 @@ class app:
     window = pygame.display.set_mode(data.window_size, pygame.NOFRAME)
 
     RP = pypresence.Presence("811677670718570536")
-    
+
     class PartSYS:
         # Particles system by METGaming, bug fixes by Danix
         def __init__(self):
@@ -69,7 +69,7 @@ class app:
         def draw(self, window):
             for p in self.particles:
                 pygame.draw.circle(window, app.colors.white, (p[0], p[1]), p[2])
-    
+
     class ErrorScreen:
         # Error screen by METGaming, some updates by Danix
         def __init__(self):
@@ -113,7 +113,7 @@ class app:
                                 pygame.quit()
                                 sys.exit()
                 pygame.display.update()
-    
+
     PartSYS = PartSYS()
     ErrorScreen = ErrorScreen()
 
@@ -131,10 +131,10 @@ class app:
                     self.RP.active = False
             else:
                 self.RP.active = False
-            
+
             self.exit = self.font.render("X", True, self.colors.white)
             self.exit_button = pygame.Rect(880, 0, 70, 27)
-        
+
             pygame.mouse.set_visible(False)
 
             self.user_code = [""]
@@ -221,6 +221,13 @@ class app:
                                 self.user_code.append("")
                                 self.user_code_lines += 1
                         # If the key is TAB make identation
+                        elif self.event.key == K_UP:
+                            if self.currentState == "Editor":
+                                with open("code.py", "r") as self.code:
+                                    self.user_code = self.code.read().split("\n")
+                                    self.user_code_lines = 0
+                                    for self.code_lines in self.user_code:
+                                        self.user_code_lines += 1
                         elif self.event.key == K_TAB:
                             self.user_code[self.user_code_lines - 1] += "   "
                             if self.data.config["particles"]:

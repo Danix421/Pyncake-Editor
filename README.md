@@ -1,11 +1,5 @@
 # Pyncake Editor [![Made with love by Danix](https://img.shields.io/badge/made%20with%20♡%20by-danix-4287f5?style=for-the-badge)](https://github.com/Danix421) [![Pypresence](https://img.shields.io/badge/using-pypresence-00bb88.svg?style=for-the-badge&logo=discord&logoWidth=20)](https://github.com/qwertyquerty/pypresence) [![itch.io](https://img.shields.io/badge/itch.io-fa5c5c?style=for-the-badge&logo=itch.io&logoColor=white)](https://danix421.itch.io/pyncake-editor)
 
--------------------------------------------------------------------------------------------
-
-WARNING: Pyncake Editor is deprecated; it will not have any official support. You can use it, but it may have some bugs why the development was not finished.
-
--------------------------------------------------------------------------------------------
-
 Pyncake Editor is the new powerful and simplest code editor, made with Python, for Python.
 
 ## Feactures
